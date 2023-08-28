@@ -31,31 +31,45 @@
         justify-content: center;
         color: white;
 
-        .input {
-            width: 50%;
-            display: flex;
-            align-items: center;
-            background-color: white;
-            justify-content: space-between;
-            margin-top: 20px;
-            height: 50px;
+        form {
+            width: 300px;
+            height: 300px;
+            padding: 30px;
             border-radius: 5px;
+            background-color: var(--main-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
 
             input {
-                flex: 9;
-                height: 100%;
-                border: none;
-                padding: 0 10px;
+                height: 40px;
+                border-radius: 5px;
+                background-color: gray;
+                color: white;
+                padding-left: 10px;
+
+                &::placeholder {
+                    color: lightgray;
+                }
             }
 
-            .registerButton {
-                flex: 3;
-                height: 100%;
+            button {
+                height: 40px;
                 border: none;
+                border-radius: 5px;
                 background-color: red;
-                color: white;
-                font-size: 20px;
                 cursor: pointer;
+                color: white;
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            span {
+                color: lightgray;
+
+                b {
+                    color: white;
+                }
             }
         }
     }
