@@ -1,4 +1,4 @@
-.auth {
+.login {
     width: 100vw;
     height: 100vh;
     background: linear-gradient(to bottom,
@@ -16,17 +16,6 @@
             .logo{
                 height: 40px;
             }
-
-            .loginButton {
-                border:none;
-                background-color: red;
-                color: white;
-                border-radius: 5px;
-                padding: 5px 15px;
-                font-weight: 500;
-                font-size: 16px;
-                cursor: pointer;
-            }
         }
     }
 
@@ -41,18 +30,6 @@
         align-items: center;
         justify-content: center;
         color: white;
-
-        h1 {
-            font-size: 50px;
-        }
-
-        h2 {
-            margin: 20px;
-        }
-
-        p{
-            font-size: 20px;
-        }
 
         .input {
             width: 50%;
