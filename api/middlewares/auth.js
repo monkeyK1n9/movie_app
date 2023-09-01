@@ -1,11 +1,11 @@
-/**
- * Registering the user when he provided he filled the form
- */
 
 const User = require("../models/User")
 const CryptoJS = require("crypto-js")
 const jwt = require('jsonwebtoken');
 
+/**
+ * Registering the user when he provided information in the form
+ */
 const registerUser = async (req, res) => {
     
     const newUser = new User({
@@ -23,6 +23,9 @@ const registerUser = async (req, res) => {
     }
 }
 
+/**
+ * Logging the user
+ */
 const loginUser = async (req, res) => {
     try {
         const user = await User.findOne({

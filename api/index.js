@@ -4,7 +4,9 @@ const dotenv = require("dotenv");
 const port = 8800
 
 //routes
-const authRoute = require("./routes/auth")
+const authRoute = require("./routes/auth");
+const usersRoute = require("./routes/users");
+const moviesRoute = require("./routes/movies");
 
 dotenv.config();
 
@@ -20,6 +22,8 @@ mongoose.connect(process.env.MONGO_URL, {
 
 app.use(express.json());
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", usersRoute);
+app.use("/api/v1/movies", moviesRoute);
 
 app.listen(port, () => {
     console.log('Server listening on port: ' + port);
