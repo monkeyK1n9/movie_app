@@ -7,6 +7,7 @@ const port = 8800
 const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const moviesRoute = require("./routes/movies");
+const listsRoute = require("./routes/lists");
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/movies", moviesRoute);
+app.use("/api/v1/lists", listsRoute);
 
 app.listen(port, () => {
     console.log('Server listening on port: ' + port);

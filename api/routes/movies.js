@@ -4,6 +4,7 @@ const {
     deleteMovie,
     getMovie,
     getAllMovies,
+    getRandomMovie,
 } = require('../middlewares/movies');
 
 const router = require('express').Router();
@@ -14,13 +15,16 @@ const verify = require("../verifyToken");
 router.post("/", verify, createMovie);
 
 //UPDATE
-router.post("/:id", verify, updateMovie)
+router.put("/:id", verify, updateMovie)
 
 //DELETE
 router.delete("/:id", verify, deleteMovie)
 
 //GET
 router.get("/find/:id", verify, getMovie)
+
+//GET RANDOM
+router.get("/random", verify, getRandomMovie);
 
 //GET ALL
 router.get("/", verify, getAllMovies)
