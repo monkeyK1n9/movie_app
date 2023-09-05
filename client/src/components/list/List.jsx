@@ -3,7 +3,7 @@ import "./list.scss"
 import ListItem from "../listItem/ListItem"
 import { useRef, useState } from "react"
 
-export default function List() {
+export default function List({list}) {
     const [slideNumber, setSlideNumber] = useState(0)
     const [isMoved, setIsMoved] = useState(false);
 
@@ -24,7 +24,7 @@ export default function List() {
     }
     return (
         <div className='list'>
-            <span className="listTitle">Continue to watch</span>
+            <span className="listTitle">{list.title}</span>
             <div className="wrapper">
                 <ArrowBackIosOutlined className="sliderArrow left" onClick={() => handleClick("left")} style={{display: !isMoved && "none"}} />
                 <div className="container" ref={listRef}>

@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const dotenv = require("dotenv");
 const port = 8800
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGO_URL, {
 .catch(err => console.log("Failed to connect to MongoDB with error: " + err))
 
 app.use(express.json());
+app.use(cors());
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/movies", moviesRoute);
