@@ -1,7 +1,24 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons"
 import "./featured.scss"
+import { axiosInstance } from "../../axios/axiosInstance";
+import { useEffect, useState } from "react";
 
 export default function Featured({type}) {
+    const [content, setContent] = useState({});
+
+    const getRandomContent = async () => {
+        try {
+            const res = await axiosInstance.get(`/movies/random?type=${type}`);
+            console.log(res)
+            setContent(res.data[0]);
+        }
+        catch (err) {
+            console.log("Failed to get random content with error: " + err);
+        }
+    }
+    useEffect(() => {
+        getRandomContent();
+    }, [])
     return (
         <div className='featured'>
             {type && (
@@ -24,12 +41,12 @@ export default function Featured({type}) {
                     </select>
                 </div>
             )}
-            <img src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+            <img src={content.img} alt="" />
 
             <div className="info">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/The-matrix-logo.svg/1280px-The-matrix-logo.svg.png" alt="" />
+                <img src={content.imgTitle} alt="" />
 
-                <span className="desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe accusamus obcaecati velit animi consequuntur, cumque eum hic fugiat alias quisquam veniam. Temporibus officiis tenetur expedita error minima, nihil non provident.</span>
+                <span className="desc">{content.desc}</span>
 
                 <div className="buttons">
                     <button className="play">

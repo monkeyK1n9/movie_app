@@ -14,7 +14,6 @@ export default function Home({type}) {
             const res = await axiosInstance.get(`lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`);
 
             setLists(res.data)
-            console.log(res)
         }
         catch (err) {
             console.log("Error fetching list: " + err);
@@ -30,9 +29,9 @@ export default function Home({type}) {
 
             <Featured type={type}/>
 
-            {lists.map(list => {
+            {lists.map((list, index) => {
                 return (
-                    <List list={list}/>
+                    <List key={index} list={list}/>
                 )
             })}
 

@@ -1,13 +1,28 @@
 import { Add, PlayArrow, ThumbUpAltOutlined, ThumbDownAltOutlined } from "@material-ui/icons"
 import "./listItem.scss"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../../axios/axiosInstance";
+import { Link } from "react-router-dom";
 
-export default function ListItem({index}) {
+export default function ListItem({item, index}) {
     const [isHoved, setIsHoved] = useState(false);
+    const [listItem, setListItem] = useState({});
 
-    const trailer = "https://www.youtube.com/watch?v=RbrTmC2r9nQ"
-    // const trailer = "https://www.pexels.com/fr-fr/video/circulation-architecture-tour-urbain-15809929/"
+    const getListItemFromId = async (id) => {
+        try {
+            const res = await axiosInstance.get(`movies/find/${id}`);
+            setListItem(res.data);
+        }
+        catch(err) {
+            console.log("Error getting list item: " + err);
+        }
+    }
+
+    useEffect(() => {
+        getListItemFromId(item);
+    }, [item])
     return (
+        <Link to="/watch" state={{movie: listItem }}>
         <div 
             className='listItem' 
             onMouseEnter={() => setIsHoved(true)} 
@@ -16,11 +31,11 @@ export default function ListItem({index}) {
                 left: isHoved && index * 225 - 50 + index * 2.5
             }}
         >
-            <img src="https://all-car-news.com/wp-content/uploads/2023/08/gran-turismo-2.webp" alt="" />
+            <img src={listItem.img} alt="" />
 
             {isHoved && 
                 <>
-                    <video src={trailer} autoPlay={true} loop/>
+                    <video src={listItem.trailer} autoPlay={true} loop/>
 
                     <div className="itemInfo">
                         <div className="icons">
@@ -31,17 +46,18 @@ export default function ListItem({index}) {
                         </div>
 
                         <div className="itemInfoTop">
-                            <span>1 hour 14 mins</span>
-                            <span className="limit">+16</span>
-                            <span>1999</span>
+                            <span>{listItem.duration}</span>
+                            <span className="limit">+{listItem.limit}</span>
+                            <span>{listItem.year}</span>
                         </div>
 
-                        <div className="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse veniam beatae!</div>
+                        <div className="desc">{listItem.desc}</div>
 
-                        <div className="genre">Action</div>
+                        <div className="genre">{listItem.genre}</div>
                     </div>
                 </>
             }
         </div>
+        </Link>
     )
 }

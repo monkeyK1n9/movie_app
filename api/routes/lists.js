@@ -3,8 +3,6 @@ const {
     updateList,
     deleteList,
     getList,
-    getAllLists,
-    getRandomList,
 } = require('../middlewares/lists');
 
 const router = require('express').Router();
