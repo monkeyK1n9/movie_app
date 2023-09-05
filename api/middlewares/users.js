@@ -74,7 +74,7 @@ const getAllUsers = async (req, res) => {
 
         try {
             //get all users in database
-            const users = query ? await User.find().limit(10).sort({_id: -1}) : await User.find();
+            const users = query ? await User.find().limit(5).sort({_id: -1}) : await User.find();
 
             res.status(200).json(users);
         }
