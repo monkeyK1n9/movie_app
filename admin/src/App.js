@@ -14,22 +14,30 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext/AuthContext";
 
 function App() {
+  const {user} = useContext(AuthContext);
+
   return (
     <Router>
-      <Topbar />
+      {user && <Topbar />}
       <div className="container">
-        <Sidebar />
+        {user && <Sidebar />}
         <Routes>
-          <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/user/:userId" element={<User />} />
-          <Route path="/newUser" element={<NewUser /> } />
-          <Route path="/movies" element={<ProductList />} />
-          <Route path="/product/:productId" element={<Product />} />
-          <Route path="/newProduct" element={<NewProduct />} />
+          {user &&
+            <>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/user/:userId" element={<User />} />
+            <Route path="/newUser" element={<NewUser /> } />
+            <Route path="/movies" element={<ProductList />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/newProduct" element={<NewProduct />} />
+            </>
+          }
         </Routes>
       </div>
     </Router>

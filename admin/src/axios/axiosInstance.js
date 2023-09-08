@@ -6,6 +6,6 @@ export const axiosInstance = axios.create({
     headers: {
         Accept: "application/json",
         "Access-Control-Allow-Origin": "http://localhost:8800/api/v1",
-        token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZjVkMzU5YmU0MGFjZDJmM2UxMTRkYyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MzgzNDI4NiwiZXhwIjoxNjk0MjY2Mjg2fQ.sbS0L51NRqGUBH-CJaFlIpZ47YHwYgNwxvelKDyVkAA"
+        token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken
     }
 })

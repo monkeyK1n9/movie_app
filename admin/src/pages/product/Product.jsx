@@ -9,7 +9,7 @@ export default function Product() {
     return (
         <div className='product'>
             <div className="productTitleContainer">
-                <h1 className="productTitle">Product</h1>
+                <h1 className="productTitle">Movie</h1>
                 <Link to="/newProduct">
                     <button className="productAddButton">
                         Create
@@ -17,14 +17,6 @@ export default function Product() {
                 </Link>
             </div>
             <div className="productTop">
-                <div className="productTopLeft">
-                    <Chart
-                        chartTitle="Sales performance"
-                        data={productData}
-                        dataKey="Sales"
-                        grid
-                    />
-                </div>
                 <div className="productTopRight">
                     <div className="productInfoTop">
                         <img src="https://images.pexels.com/photos/17748758/pexels-photo-17748758/free-photo-of-bois-lumineux-soleil-couchant-rue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product" className="productInfoImg" />
@@ -69,7 +61,7 @@ export default function Product() {
                     <div className="productFormRight">
                         <div className="productUpload">
                             <img src="https://images.pexels.com/photos/17748758/pexels-photo-17748758/free-photo-of-bois-lumineux-soleil-couchant-rue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product" className="productUploadImg" />
-                            <label for="file">
+                            <label htmlFor='file' >
                                 <Publish className="productUploadIcon"/>
                             </label>
                             <input type="file" name="file" style={{display: "none"}} />

@@ -69,7 +69,6 @@ const getUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     const query = req.query.new; //if query containes new keyword ( ?new=true)
-    console.log(req.user)
     if (req.user.isAdmin) {
 
         try {
