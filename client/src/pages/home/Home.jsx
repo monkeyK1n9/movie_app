@@ -12,7 +12,6 @@ export default function Home({type}) {
     const getRandomList = async () => {
         try {
             const res = await axiosInstance.get(`lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`);
-
             setLists(res.data)
         }
         catch (err) {
