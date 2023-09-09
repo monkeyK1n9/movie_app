@@ -1,11 +1,15 @@
 import React from 'react'
 import "./product.css"
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Chart from '../../components/chart/Chart'
 import { productData } from '../../dummyData'
 import { Publish } from '@material-ui/icons'
 
 export default function Product() {
+    const location = useLocation()
+
+    const movie = location.state.movie;
+
     return (
         <div className='product'>
             <div className="productTitleContainer">
@@ -19,25 +23,25 @@ export default function Product() {
             <div className="productTop">
                 <div className="productTopRight">
                     <div className="productInfoTop">
-                        <img src="https://images.pexels.com/photos/17748758/pexels-photo-17748758/free-photo-of-bois-lumineux-soleil-couchant-rue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product" className="productInfoImg" />
-                        <span className="productName">Apple Airpods</span>
+                        <img src={movie.img} alt="Product" className="productInfoImg" />
+                        <span className="productName">{movie.title}</span>
                     </div>
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
-                            <span className="productInfoKey">id:</span>
-                            <span className="productInfoValue">123</span>
+                            <span className="productInfoKey">id: </span>
+                            <span className="productInfoValue">{movie._id}</span>
                         </div>
                         <div className="productInfoItem">
-                            <span className="productInfoKey">Sales: </span>
-                            <span className="productInfoValue">4123 XAF</span>
+                            <span className="productInfoKey">Genre: </span>
+                            <span className="productInfoValue">{movie.genre}</span>
                         </div>
                         <div className="productInfoItem">
-                            <span className="productInfoKey">Active:</span>
-                            <span className="productInfoValue">Yes</span>
+                            <span className="productInfoKey">Year: </span>
+                            <span className="productInfoValue">{movie.year}</span>
                         </div>
                         <div className="productInfoItem">
-                            <span className="productInfoKey">In stock:</span>
-                            <span className="productInfoValue">No</span>
+                            <span className="productInfoKey">Limit: </span>
+                            <span className="productInfoValue">{movie.limit}</span>
                         </div>
                     </div>
                 </div>
@@ -45,22 +49,22 @@ export default function Product() {
             <div className="productBottom">
                 <form className="productForm">
                     <div className="productFormLeft">
-                        <label>Product Name</label>
-                        <input type="text" placeholder="Apple Airpods" />
-                        <label>Active</label>
-                        <select name="active" id='active'>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                        <label>In stock</label>
-                        <select name="inStock" id='idStock'>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
+                        <label>Movie Title</label>
+                        <input type="text" placeholder={movie.title} />
+                        <label>Year</label>
+                        <input type="text" placeholder={movie.year} />
+                        <label>Genre</label>
+                        <input type="text" placeholder={movie.genre} />
+                        <label>Limit</label>
+                        <input type="text" placeholder={movie.limit} />
+                        <label>Trailer</label>
+                        <input type="file" placeholder={movie.trailer} />
+                        <label>Video</label>
+                        <input type="file" placeholder={movie.video} />
                     </div>
                     <div className="productFormRight">
                         <div className="productUpload">
-                            <img src="https://images.pexels.com/photos/17748758/pexels-photo-17748758/free-photo-of-bois-lumineux-soleil-couchant-rue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Product" className="productUploadImg" />
+                            <img src={movie.img} alt="Product" className="productUploadImg" />
                             <label htmlFor='file' >
                                 <Publish className="productUploadIcon"/>
                             </label>

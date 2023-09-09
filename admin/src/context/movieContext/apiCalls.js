@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../axios/axiosInstance";
-import { deleteMovieFailure, deleteMovieStart, deleteMovieSuccess, getMoviesFailure, getMoviesStart, getMoviesSuccess } from "./MovieActions"
+import { createMovieFailure, createMovieStart, createMovieSuccess, deleteMovieFailure, deleteMovieStart, deleteMovieSuccess, getMoviesFailure, getMoviesStart, getMoviesSuccess } from "./MovieActions"
 
 
 export const getMovies = async(dispatch) => {
@@ -21,5 +21,16 @@ export const deleteMovie = async (movieId, dispatch) => {
     }
     catch (err) {
         dispatch(deleteMovieFailure());
+    }
+}
+
+export const createMovie = async (movie, dispatch) => {
+    dispatch(createMovieStart());
+    try {
+        const res = await axiosInstance.post("movies", movie);
+        dispatch(createMovieSuccess(res.data, dispatch));
+    }
+    catch(err) {
+        dispatch(createMovieFailure());
     }
 }

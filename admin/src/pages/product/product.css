@@ -65,6 +65,10 @@
     width: 150px;
 }
 
+.productInfoKey {
+    margin-right: 10px;
+}
+
 .productInfoValue {
     font-weight: 300;
 }
